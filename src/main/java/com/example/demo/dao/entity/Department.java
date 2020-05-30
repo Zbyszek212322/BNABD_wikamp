@@ -1,5 +1,7 @@
 package com.example.demo.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,6 +24,7 @@ public class Department {
     @Column(name = "department_name", unique = true)
     private String departmentName;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
     private List<Employee> employees;
 

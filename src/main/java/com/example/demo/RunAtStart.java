@@ -4,16 +4,16 @@ import com.example.demo.dao.DepartmentRepository;
 import com.example.demo.dao.EmployeeRepository;
 import com.example.demo.dao.RoleRepository;
 import com.example.demo.dao.UserRepository;
-import com.example.demo.dao.entity.Department;
-import com.example.demo.dao.entity.Employee;
-import com.example.demo.dao.entity.EnumRole;
-import com.example.demo.dao.entity.Role;
+import com.example.demo.dao.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class RunAtStart {
@@ -47,5 +47,13 @@ public class RunAtStart {
 
         Role role1 = roleRepository.save(new Role(EnumRole.ROLE_USER));
         Role role2 = roleRepository.save(new Role(EnumRole.ROLE_ADMIN));
+
+        Set<Role> user = new HashSet<>(Arrays.asList(role1));
+        Set<Role> admin = new HashSet<>(Arrays.asList(role2));
+
+        User user1 = userRepository.save(new User(1L, "admin1", "admin1@test.pl",
+                "$2a$10$zWasY5baOMAK/ffCBBUvZ.jxHyp47WQqBbPw/kwF/e.rTj11xJcMe", admin));
+        User user2 = userRepository.save(new User(2L, "user1", "user1@test.pl",
+                "$2a$10$zWasY5baOMAK/ffCBBUvZ.jxHyp47WQqBbPw/kwF/e.rTj11xJcMe", user));
     }
 }
