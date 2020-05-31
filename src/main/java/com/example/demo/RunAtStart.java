@@ -1,9 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.dao.DepartmentRepository;
-import com.example.demo.dao.EmployeeRepository;
-import com.example.demo.dao.RoleRepository;
-import com.example.demo.dao.UserRepository;
+import com.example.demo.dao.*;
 import com.example.demo.dao.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,6 +27,9 @@ public class RunAtStart {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private StudentRepository studentRepository;
+
     @PostConstruct
     public void runAtStart() {
 
@@ -55,5 +55,8 @@ public class RunAtStart {
                 "$2a$10$zWasY5baOMAK/ffCBBUvZ.jxHyp47WQqBbPw/kwF/e.rTj11xJcMe", admin));
         User user2 = userRepository.save(new User(2L, "user1", "user1@test.pl",
                 "$2a$10$zWasY5baOMAK/ffCBBUvZ.jxHyp47WQqBbPw/kwF/e.rTj11xJcMe", user));
+
+        Student student1 = studentRepository.save(new Student("Jerry", "Łopata"));
+        Student student2 = studentRepository.save(new Student("Jan", "Nowak"));
     }
 }
