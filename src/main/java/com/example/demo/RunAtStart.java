@@ -30,6 +30,9 @@ public class RunAtStart {
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired
+    private FacultyRepository facultyRepository;
+
     @PostConstruct
     public void runAtStart() {
 
@@ -45,18 +48,34 @@ public class RunAtStart {
         Employee emp4 = employeeRepository.save(new Employee(4L, "Kamil", "Wiśniewski", new BigDecimal("2800.00"),
                 LocalDate.of(2001, 1, 1), dept2));
 
+        // ---------------------------------------------------------------------------------------------------------
+
         Role role1 = roleRepository.save(new Role(EnumRole.ROLE_USER));
         Role role2 = roleRepository.save(new Role(EnumRole.ROLE_ADMIN));
+        Role role3 = roleRepository.save(new Role(EnumRole.ROLE_STUDENT));
+        Role role4 = roleRepository.save(new Role(EnumRole.ROLE_LECTURER));
 
         Set<Role> user = new HashSet<>(Arrays.asList(role1));
         Set<Role> admin = new HashSet<>(Arrays.asList(role2));
+        Set<Role> student = new HashSet<>(Arrays.asList(role3));
+        Set<Role> lecturer = new HashSet<>(Arrays.asList(role4));
 
         User user1 = userRepository.save(new User(1L, "admin1", "admin1@test.pl",
                 "$2a$10$zWasY5baOMAK/ffCBBUvZ.jxHyp47WQqBbPw/kwF/e.rTj11xJcMe", admin));
         User user2 = userRepository.save(new User(2L, "user1", "user1@test.pl",
                 "$2a$10$zWasY5baOMAK/ffCBBUvZ.jxHyp47WQqBbPw/kwF/e.rTj11xJcMe", user));
+        User user3 = userRepository.save(new User(3L, "student1", "student1@test.pl",
+                "$2a$10$zWasY5baOMAK/ffCBBUvZ.jxHyp47WQqBbPw/kwF/e.rTj11xJcMe", student));
+        User user4 = userRepository.save(new User(4L, "lecturer1", "lecturer1@test.pl",
+                "$2a$10$zWasY5baOMAK/ffCBBUvZ.jxHyp47WQqBbPw/kwF/e.rTj11xJcMe", lecturer));
 
         Student student1 = studentRepository.save(new Student("Jerry", "Łopata"));
         Student student2 = studentRepository.save(new Student("Jan", "Nowak"));
+
+        Faculty faculty1 = facultyRepository.save(new Faculty(1L, "Computer Science"));
+        Faculty faculty2 = facultyRepository.save(new Faculty(2L, "Business Studies"));
+        Faculty faculty3 = facultyRepository.save(new Faculty(3L, "Architecture"));
+
+
     }
 }

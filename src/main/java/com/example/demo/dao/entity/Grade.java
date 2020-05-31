@@ -24,6 +24,11 @@ public class Grade {
     @Column(name = "grade")
     private BigDecimal grade;
 
-    // TODO faculty_id
-    // TODO index_no
+    @ManyToOne
+    @JoinColumn(name = "index_no", nullable = false)
+    private Student student;
+
+    @ManyToOne
+    @JoinColumn(name = "faculty_id") //, nullable = false)
+    private Faculty faculty;
 }

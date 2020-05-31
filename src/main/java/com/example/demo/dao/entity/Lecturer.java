@@ -28,4 +28,12 @@ public class Lecturer {
 
     @Column(name = "academic_degree")
     private String academicDegree;
+
+    @ManyToOne
+    @JoinColumn(name = "subject_id", nullable = false)
+    private Subject subject;
+
+    @ManyToOne
+    @JoinColumn(name = "faculty_id") //, nullable = false)
+    private Faculty faculty;
 }

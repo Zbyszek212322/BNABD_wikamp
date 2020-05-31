@@ -1,12 +1,13 @@
 package com.example.demo.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -28,7 +29,13 @@ public class Student {
     @Column(name = "last_name")
     private String lastName;
 
-    // TODO faculty_id
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
+    private List<Grade> grades;
+
+    @ManyToOne
+    @JoinColumn(name = "faculty_id") //, nullable = false)
+    private Faculty faculty;
 
     public Student(String firstName, String lastName) {
 
