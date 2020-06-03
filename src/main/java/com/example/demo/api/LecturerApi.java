@@ -24,6 +24,7 @@ public class LecturerApi {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasRole('ADMIN')")
     public Iterable<Lecturer> getAll() {
 
         return lecturerManager.findAllLecturers();

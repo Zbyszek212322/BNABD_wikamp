@@ -24,6 +24,7 @@ public class SubjectApi {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasRole('ADMIN')")
     public Iterable<Subject> getAll() {
 
         return subjectManager.findAllSubjects();

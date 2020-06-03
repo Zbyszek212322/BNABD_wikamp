@@ -24,6 +24,7 @@ public class GradeApi {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasRole('ADMIN')")
     public Iterable<Grade> getAll() {
 
         return gradeyManager.findAllGrades();
