@@ -37,6 +37,21 @@ public class StudentApi {
         return studentManager.findStudentById(id);
     }
 
+    @GetMapping("/allByFaculty")
+    @PreAuthorize("hasRole('ADMIN')")
+    public Iterable<Student> getAllStudentsFromFaculty(@RequestParam(name = "facultyName") String facultyName) {
+
+        return studentManager.findAllStudentsInFaculty(facultyName);
+    }
+
+    @GetMapping("/allByFacultyIdAndStudentName")
+    @PreAuthorize("hasRole('ADMIN')")
+    public Iterable<Student> getAllStudentsByFacultyIdAndStudentName(@RequestParam(name = "facultyId") Long facultyId,
+                                                                 @RequestParam(name = "studentLastName") String studentLastName) {
+
+        return studentManager.findAllStudentsByFacultyIdAndStudentName(facultyId, studentLastName);
+    }
+
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Student> addStudent(@RequestBody Student student) {

@@ -1,8 +1,6 @@
 package com.example.demo.api;
 
-import com.example.demo.dao.entity.Department;
 import com.example.demo.dao.entity.Faculty;
-import com.example.demo.manager.DepartmentManager;
 import com.example.demo.manager.FacultyManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

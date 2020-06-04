@@ -1,6 +1,8 @@
 package com.example.demo.manager;
 
+import com.example.demo.dao.FacultyRepository;
 import com.example.demo.dao.StudentRepository;
+import com.example.demo.dao.entity.Faculty;
 import com.example.demo.dao.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,11 +13,13 @@ import java.util.Optional;
 public class StudentManager {
 
     private final StudentRepository studentRepository;
+    private final FacultyRepository facultyRepository;
 
     @Autowired
-    public StudentManager(StudentRepository studentRepository) {
+    public StudentManager(StudentRepository studentRepository, FacultyRepository facultyRepository) {
         super();
         this.studentRepository = studentRepository;
+        this.facultyRepository = facultyRepository;
     }
 
     public Optional<Student> findStudentById(Long id) {
@@ -36,5 +40,19 @@ public class StudentManager {
     public void deleteStudentById(Long id) {
 
         studentRepository.deleteById(id);
+    }
+
+    public Iterable<Student> findAllStudentsInFaculty(String facultyName) {
+
+        Iterable<Student> studentsInFaculty = studentRepository.findByFaculty(facultyRepository.findByFacultyName(facultyName));
+        return studentsInFaculty;
+    }
+
+    public Iterable<Student> findAllStudentsByFacultyIdAndStudentName(Long facultyId, String studentLastName) {
+
+        Faculty faculty = facultyRepository.findFirstById(facultyId);
+        Iterable<Student> studentsInFaculty = studentRepository.findByLastNameAndFaculty(studentLastName, faculty);
+
+        return studentsInFaculty;
     }
 }

@@ -25,12 +25,8 @@ public class Subject {
     @Column(name = "subject_name", unique = true)
     private String subjectName;
 
-//    @JsonIgnore
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subject")
-//    private List<Lecturer> lecturers;
-
     @ManyToOne
-    @JoinColumn(name = "faculty_id") //, nullable = false)
+    @JoinColumn(name = "faculty_id")
     private Faculty faculty;
 
     @JsonIgnore
@@ -40,4 +36,11 @@ public class Subject {
     @ManyToOne
     @JoinColumn(name = "lecturer_id", nullable = false)
     private Lecturer lecturer;
+
+    public Subject(String subjectName, Faculty faculty, Lecturer lecturer) {
+
+        this.subjectName = subjectName;
+        this.faculty = faculty;
+        this.lecturer = lecturer;
+    }
 }

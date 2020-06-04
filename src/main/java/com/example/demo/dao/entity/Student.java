@@ -34,7 +34,7 @@ public class Student {
     private List<Grade> grades;
 
     @ManyToOne
-    @JoinColumn(name = "faculty_id") //, nullable = false)
+    @JoinColumn(name = "faculty_id")
     private Faculty faculty;
 
     public Student(String firstName, String lastName, Faculty faculty) {

@@ -124,7 +124,19 @@ public class RunAtStart {
         Student student40 = studentRepository.save(new Student("Gabriell", "Flounders", faculty3));
         Student student41 = studentRepository.save(new Student("Devora", "Cortnay", faculty3));
 
+        Lecturer lecturer1 = lecturerRepository.save(new Lecturer("dr inż.","Andrzej", "Wiśniewski", faculty1));
+        Lecturer lecturer2 = lecturerRepository.save(new Lecturer("dr inż.","Przemysław", "Gajda", faculty1));
+        Lecturer lecturer3 = lecturerRepository.save(new Lecturer("prof. dr hab. inż.","Jan", "Kowalski", faculty1));
 
+        Subject subject1 = subjectRepository.save(new Subject("Object Oriented Programming", faculty1, lecturer1));
+        Subject subject2 = subjectRepository.save(new Subject("Object Oriented Programming II", faculty1, lecturer1));
+        Subject subject3 = subjectRepository.save(new Subject("Big Data", faculty1, lecturer2));
 
+        Grade grade1 = gradeRepository.save(new Grade(1L, new BigDecimal("4.5"), student2, subject1));
+        Grade grade2 = gradeRepository.save(new Grade(2L, new BigDecimal("5"), student3, subject1));
+        Grade grade3 = gradeRepository.save(new Grade(3L, new BigDecimal("3"), student4, subject1));
+        Grade grade4 = gradeRepository.save(new Grade(4L, new BigDecimal("3"), student5, subject1));
+        Grade grade5 = gradeRepository.save(new Grade(5L, new BigDecimal("4"), student6, subject1));
+        Grade grade6 = gradeRepository.save(new Grade(6L, new BigDecimal("5"), student9, subject1));
     }
 }
