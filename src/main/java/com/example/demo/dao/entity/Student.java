@@ -37,9 +37,10 @@ public class Student {
     @JoinColumn(name = "faculty_id") //, nullable = false)
     private Faculty faculty;
 
-    public Student(String firstName, String lastName) {
+    public Student(String firstName, String lastName, Faculty faculty) {
 
         this.firstName = firstName;
         this.lastName = lastName;
+        this.faculty = faculty;
     }
 }

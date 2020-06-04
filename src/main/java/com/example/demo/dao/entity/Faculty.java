@@ -33,9 +33,7 @@ public class Faculty {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "faculty")
     private List<Subject> subjects;
 
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "faculty")
-    private List<Grade> grades;
+
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "faculty")

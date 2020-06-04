@@ -29,6 +29,6 @@ public class Grade {
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "faculty_id") //, nullable = false)
-    private Faculty faculty;
+    @JoinColumn(name = "subject_id", nullable = false)
+    private Subject subject;
 }

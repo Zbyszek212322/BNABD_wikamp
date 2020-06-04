@@ -25,11 +25,19 @@ public class Subject {
     @Column(name = "subject_name", unique = true)
     private String subjectName;
 
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subject")
-    private List<Lecturer> lecturers;
+//    @JsonIgnore
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subject")
+//    private List<Lecturer> lecturers;
 
     @ManyToOne
     @JoinColumn(name = "faculty_id") //, nullable = false)
     private Faculty faculty;
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subject")
+    private List<Grade> grades;
+
+    @ManyToOne
+    @JoinColumn(name = "lecturer_id", nullable = false)
+    private Lecturer lecturer;
 }
