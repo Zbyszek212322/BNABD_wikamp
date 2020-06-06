@@ -102,6 +102,18 @@ public class LoginApi {
                         roles.add(adminRole);
                         break;
 
+                    case "student":
+                        Role studentRole = roleRepository.findByName(EnumRole.ROLE_STUDENT)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(studentRole);
+                        break;
+
+                    case "lecturer":
+                        Role lecturerRole = roleRepository.findByName(EnumRole.ROLE_LECTURER)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(lecturerRole);
+                        break;
+
                     default:
                         Role userRole = roleRepository.findByName(EnumRole.ROLE_USER)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
