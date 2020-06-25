@@ -57,9 +57,9 @@ public class RunAtStart {
         User user4 = userRepository.save(new User(4L, "lecturer1", "lecturer1@test.pl",
                 "$2a$10$zWasY5baOMAK/ffCBBUvZ.jxHyp47WQqBbPw/kwF/e.rTj11xJcMe", lecturer));
 
-        Faculty faculty1 = facultyRepository.save(new Faculty(1L, "Computer Science"));
+        Faculty faculty1 = facultyRepository.save(new Faculty(1L, "Architecture"));
         Faculty faculty2 = facultyRepository.save(new Faculty(2L, "Business Studies"));
-        Faculty faculty3 = facultyRepository.save(new Faculty(3L, "Architecture"));
+        Faculty faculty3 = facultyRepository.save(new Faculty(3L, "Computer Science"));
 
         Student student1 = studentRepository.save(new Student("Jerry", "Łopata", faculty1));
         Student student2 = studentRepository.save(new Student("Jan", "Nowak", faculty1));

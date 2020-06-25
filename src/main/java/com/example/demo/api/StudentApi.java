@@ -24,7 +24,7 @@ public class StudentApi {
     }
 
     @GetMapping("/all")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('LECTURER')")
     public Iterable<Student> getAll() {
 
         return studentManager.findAllStudents();
@@ -59,11 +59,11 @@ public class StudentApi {
         return  new ResponseEntity<>(stu, HttpStatus.OK);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<String> deleteStudent(@RequestParam(name = "studentId") Long studentId) {
-        studentManager.deleteStudentById(studentId);
-        return new ResponseEntity<>("Student with ID:" + studentId + " deleted successfully", HttpStatus.OK);
+    public Iterable<Student> deleteStudent(@PathVariable @RequestBody Long id) {
+        studentManager.deleteStudentById(id);
+        return studentManager.findAllStudents();
     }
 
     @PutMapping

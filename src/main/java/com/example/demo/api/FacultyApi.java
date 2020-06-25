@@ -1,6 +1,7 @@
 package com.example.demo.api;
 
 import com.example.demo.dao.entity.Faculty;
+import com.example.demo.dao.entity.Student;
 import com.example.demo.manager.FacultyManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,11 +44,11 @@ public class FacultyApi {
         return  new ResponseEntity<>(fac, HttpStatus.OK);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<String> deleteFaculty(@RequestParam(name = "facultyId") Long facultyId) {
-        facultyManager.deleteFacultyById(facultyId);
-        return new ResponseEntity<>("Faculty with ID:" + facultyId + " deleted successfully", HttpStatus.OK);
+    public Iterable<Faculty> deleteFaculty(@PathVariable @RequestBody Long id) {
+        facultyManager.deleteFacultyById(id);
+        return facultyManager.findAllFaculties();
     }
 
     @PutMapping
