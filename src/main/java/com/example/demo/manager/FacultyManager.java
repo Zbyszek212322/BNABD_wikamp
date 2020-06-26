@@ -23,6 +23,11 @@ public class FacultyManager {
         return facultyRepository.findById(id);
     }
 
+    public Faculty findFirstFacultyById(Long id) {
+
+        return facultyRepository.findFirstById(id);
+    }
+
     public Iterable<Faculty> findAllFaculties() {
 
         return facultyRepository.findAll();

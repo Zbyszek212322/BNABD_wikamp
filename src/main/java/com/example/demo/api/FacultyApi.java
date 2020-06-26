@@ -30,18 +30,17 @@ public class FacultyApi {
         return facultyManager.findAllFaculties();
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public Optional<Faculty> getById(@RequestParam Long id) {
+    public Optional<Faculty> getById(@PathVariable @RequestBody Long id) {
 
         return facultyManager.findFacultyById(id);
     }
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Faculty> addFaculty(@RequestBody Faculty faculty) {
-        Faculty fac = facultyManager.saveFaculty(faculty);
-        return  new ResponseEntity<>(fac, HttpStatus.OK);
+    public Faculty addFaculty(@RequestBody Faculty faculty) {
+      return facultyManager.saveFaculty(faculty);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -51,11 +50,14 @@ public class FacultyApi {
         return facultyManager.findAllFaculties();
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Faculty> updateFaculty(@RequestBody Faculty faculty) {
-        Faculty fac = facultyManager.saveFaculty(faculty);
-        return  new ResponseEntity<>(fac, HttpStatus.OK);
+    public Iterable<Faculty> updateFaculty(@PathVariable(value = "id") Long id,
+                                                 @RequestBody Faculty faculty) {
+        Faculty fac = facultyManager.findFirstFacultyById(id);
+        fac.setFacultyName(faculty.getFacultyName());
+        facultyManager.saveFaculty(fac);
+        return  facultyManager.findAllFaculties();
     }
 
 }
